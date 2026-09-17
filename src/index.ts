@@ -618,7 +618,7 @@ async function listDigestArchiveKeys(env: Env): Promise<string[]> {
   do {
     const page = await env.TP_DIGEST.list({ prefix: DIGEST_KEY_PREFIX, limit: 1000, cursor });
     keys.push(...page.keys.map(k => k.name).filter(name => name !== LATEST_KEY));
-    cursor = page.cursor;
+    cursor = page.list_complete ? undefined : page.cursor;
   } while (cursor);
   return keys;
 }
