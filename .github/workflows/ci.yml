@@ -42,5 +42,8 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: KV status quota regression
+        run: node --test tests/status-snapshot.test.mjs
+
       - name: Build (wrangler dry-run)
         run: npm run build
